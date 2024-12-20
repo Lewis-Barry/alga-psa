@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -16,6 +16,7 @@ export default function SignIn() {
   const [isOpen2FA, setIsOpen2FA] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const searchParams = useSearchParams();
+  const hasShownError = useRef(false);
 
   const callbackUrl = searchParams?.get('callbackUrl') || '';
   const isCustomerPortal = callbackUrl.includes('/client-portal');
@@ -23,7 +24,13 @@ export default function SignIn() {
   const registered = searchParams?.get('registered');
 
   // Handle error and success messages from URL parameters
-  useState(() => {
+  useEffect(() => {
+    // Skip if we've already shown this error
+    if (hasShownError.current) return;
+    
+    // Only show alert if we have an error or registered status
+    if (!error && !registered) return;
+
     if (error === 'AccessDenied') {
       setAlertInfo({
         type: 'error',
@@ -31,6 +38,7 @@ export default function SignIn() {
         message: 'You do not have permission to access this page.'
       });
       setIsAlertOpen(true);
+      hasShownError.current = true;
     } else if (registered === 'true') {
       setAlertInfo({
         type: 'success',
@@ -38,8 +46,18 @@ export default function SignIn() {
         message: 'Your account has been created. Please sign in.'
       });
       setIsAlertOpen(true);
+      hasShownError.current = true;
     }
-  });
+
+    // Clear the error/registered state after showing alert, but preserve callbackUrl
+    const params = new URLSearchParams(window.location.search);
+    params.delete('error');
+    params.delete('registered');
+    if (callbackUrl) {
+      params.set('callbackUrl', callbackUrl);
+    }
+    window.history.replaceState({}, '', `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`);
+  }, [error, registered, callbackUrl]);
 
   const handle2FA = (twoFactorCode: string) => {
     setIsOpen2FA(false);

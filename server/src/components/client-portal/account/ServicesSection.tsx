@@ -1,9 +1,9 @@
 'use client';
 
-import { Card } from "@/components/ui/Card";
-import { Table } from "@/components/ui/Table";
-import { Button } from "@/components/ui/Button";
-import { Dialog, DialogContent } from "@/components/ui/Dialog";
+import { Card } from '@/components/ui/Card';
+import { Table } from '@/components/ui/Table';
+import { Button } from '@/components/ui/Button';
+import { Dialog, DialogContent } from '@/components/ui/Dialog';
 import { useState, useEffect } from 'react';
 import { 
   getActiveServices, 
@@ -12,7 +12,7 @@ import {
   downgradeService,
   type Service,
   type ServicePlan
-} from "@/lib/actions/account";
+} from '@/lib/actions/account';
 
 export default function ServicesSection() {
   const [services, setServices] = useState<Service[]>([]);
@@ -117,7 +117,7 @@ export default function ServicesSection() {
                 </td>
               </tr>
             ) : (
-              services.map((service): JSX.Element => (
+              services.map((service):JSX.Element => (
                 <tr key={service.id}>
                   <td className="font-medium">{service.name}</td>
                   <td className="text-sm text-gray-600">{service.description}</td>

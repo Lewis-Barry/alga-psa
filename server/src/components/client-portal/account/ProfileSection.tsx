@@ -1,11 +1,11 @@
 'use client';
 
-import { Card } from "@/components/ui/Card";
-import { Input } from "@/components/ui/Input";
-import { TextArea } from "@/components/ui/TextArea";
-import { Button } from "@/components/ui/Button";
+import { Card } from '@/components/ui/Card';
+import { Input } from '@/components/ui/Input';
+import { TextArea } from '@/components/ui/TextArea';
+import { Button } from '@/components/ui/Button';
 import { useState, useEffect } from 'react';
-import { getCompanyProfile, updateCompanyProfile, type CompanyProfile } from "@/lib/actions/account";
+import { getCompanyProfile, updateCompanyProfile, type CompanyProfile } from '@/lib/actions/account';
 
 interface ValidationErrors {
   name?: string;

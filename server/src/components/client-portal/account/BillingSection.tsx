@@ -1,10 +1,10 @@
 'use client';
 
-import { Card } from "@/components/ui/Card";
-import { Table } from "@/components/ui/Table";
-import { Button } from "@/components/ui/Button";
-import { Dialog, DialogContent } from "@/components/ui/Dialog";
-import { Input } from "@/components/ui/Input";
+import { Card } from '@/components/ui/Card';
+import { Table } from '@/components/ui/Table';
+import { Button } from '@/components/ui/Button';
+import { Dialog, DialogContent } from '@/components/ui/Dialog';
+import { Input } from '@/components/ui/Input';
 import { useState, useEffect } from 'react';
 import { 
   getInvoices, 
@@ -16,7 +16,7 @@ import {
   type Invoice, 
   type BillingCycle,
   type PaymentMethod
-} from "@/lib/actions/account";
+} from '@/lib/actions/account';
 
 // Validation rules
 const CARD_NUMBER_REGEX = /^[0-9]{16}$/;
