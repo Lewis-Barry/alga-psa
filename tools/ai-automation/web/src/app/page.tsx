@@ -436,6 +436,9 @@ export default function ControlPanel() {
             content: String(error),
             timestamp: new Date().toISOString()
           }]);
+          if (toolUsePromiseResolve) {
+            toolUsePromiseResolve(null);
+          }
         }
       });
 
@@ -607,7 +610,7 @@ export default function ControlPanel() {
                   </Flex>
                   <ScrollArea style={{ height: '600px', backgroundColor: 'var(--color-panel)' }}>
                     <Flex direction="column" gap="2" p="2">
-                      {messages.filter(msg => msg.role !== 'system').map((msg, idx) => (
+                      {messages.map((msg, idx) => (
                         <Box key={idx}>
                           <Text color={msg.role === 'user' ? 'blue' : msg.role === 'assistant' ? 'green' : 'gray'} mb="2">
                             <strong>

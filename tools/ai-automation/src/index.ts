@@ -278,7 +278,6 @@ app.post('/api/puppeteer', (async (req: Request, res: Response) => {
     }
 
     const page = puppeteerManager.getPage();
-
     // Ensure script execution is properly awaited
     let result;
     try {
