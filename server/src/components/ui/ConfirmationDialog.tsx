@@ -16,6 +16,8 @@ interface ConfirmationDialogProps {
   isConfirming?: boolean;
   options?: Array<{ value: string; label: string }>;
   id?: string;
+  className?: string;
+  dialogClassName?: string;
 }
 
 export const ConfirmationDialog: React.FC<ConfirmationDialogProps & AutomationProps> = ({
@@ -28,7 +30,8 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps & AutomationPr
   cancelLabel = 'Cancel',
   isConfirming,
   options,
-  id
+  id,
+  className
 }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
@@ -54,6 +57,7 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps & AutomationPr
       onClose={onClose}
       id={id}
       title={title}
+      className={className}
     >
       <DialogContent>
         <p className="text-gray-600">{message}</p>

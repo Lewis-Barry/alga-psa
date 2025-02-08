@@ -38,7 +38,7 @@ export const Dialog: React.FC<DialogProps & AutomationProps> = ({ isOpen, onClos
       <RadixDialog.Root open={isOpen} onOpenChange={onClose}>
         <RadixDialog.Portal>
           <RadixDialog.Overlay className="fixed inset-0 bg-black/50 z-50" />
-          <RadixDialog.Content className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl z-50 ${className || ''}`}>
+          <RadixDialog.Content className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 w-full ${className || 'max-w-3xl'} z-50`}>
               {title && <RadixDialog.Title className="text-xl font-semibold mb-4">{title}</RadixDialog.Title>}
               {children}
             <RadixDialog.Close asChild>

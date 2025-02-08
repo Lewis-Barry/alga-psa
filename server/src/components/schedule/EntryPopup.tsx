@@ -409,7 +409,8 @@ const EntryPopup: React.FC<EntryPopupProps> = ({
       </div>
       </DialogContent>
       
-      <ConfirmationDialog
+        <ConfirmationDialog
+          className="max-w-[450px]"
         isOpen={showRecurrenceDialog}
         onClose={() => setShowRecurrenceDialog(false)}
         onConfirm={async (updateType) => {
